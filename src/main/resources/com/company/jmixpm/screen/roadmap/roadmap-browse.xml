@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
-        caption="msg://projectBrowse.caption"
-        focusComponent="projectsTable">
+        caption="msg://roadmapBrowse.caption"
+        focusComponent="roadmapsTable">
     <data readOnly="true">
-        <collection id="projectsDc"
-                    class="com.company.jmixpm.entity.Project">
+        <collection id="roadmapsDc"
+                    class="com.company.jmixpm.entity.Roadmap">
             <fetchPlan extends="_base">
-                <property name="manager" fetchPlan="_base"/>
+                <property name="project" fetchPlan="_base"/>
+                <property name="estimation" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="projectsDl">
+            <loader id="roadmapsDl">
                 <query>
-                    <![CDATA[select e from Project e]]>
+                    <![CDATA[select e from Roadmap e]]>
                 </query>
             </loader>
         </collection>
@@ -32,14 +33,14 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="projectsTable" spacing="true">
+    <layout expand="roadmapsTable" spacing="true">
         <filter id="filter"
-                dataLoader="projectsDl">
+                dataLoader="roadmapsDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="projectsTable"
+        <groupTable id="roadmapsTable"
                     width="100%"
-                    dataContainer="projectsDc">
+                    dataContainer="roadmapsDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
@@ -47,17 +48,19 @@
             </actions>
             <columns>
                 <column id="name"/>
-                <column id="startDate"/>
-                <column id="endDate"/>
-                <column id="manager"/>
-                <column id="status"/>
+                <column id="goal"/>
+                <column id="project"/>
+                <!--<column id="estimation.description"/>
+                <column id="estimation.startDate"/>
+                <column id="estimation.endDate"/>-->
+                <column id="estimation"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="projectsTable.create"/>
-                <button id="editBtn" action="projectsTable.edit"/>
-                <button id="removeBtn" action="projectsTable.remove"/>
+                <button id="createBtn" action="roadmapsTable.create"/>
+                <button id="editBtn" action="roadmapsTable.edit"/>
+                <button id="removeBtn" action="roadmapsTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

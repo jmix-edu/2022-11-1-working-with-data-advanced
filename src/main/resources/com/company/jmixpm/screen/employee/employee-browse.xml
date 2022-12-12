@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
-        caption="msg://projectBrowse.caption"
-        focusComponent="projectsTable">
+        caption="msg://employeeBrowse.caption"
+        focusComponent="employeesTable">
     <data readOnly="true">
-        <collection id="projectsDc"
-                    class="com.company.jmixpm.entity.Project">
+        <collection id="employeesDc"
+                    class="com.company.jmixpm.entity.Employee">
             <fetchPlan extends="_base">
-                <property name="manager" fetchPlan="_base"/>
+                <property name="employeeDetails" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="projectsDl">
+            <loader id="employeesDl">
                 <query>
-                    <![CDATA[select e from Project e]]>
+                    <![CDATA[select e from Employee e]]>
                 </query>
             </loader>
         </collection>
@@ -32,14 +32,14 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="projectsTable" spacing="true">
+    <layout expand="employeesTable" spacing="true">
         <filter id="filter"
-                dataLoader="projectsDl">
+                dataLoader="employeesDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="projectsTable"
+        <groupTable id="employeesTable"
                     width="100%"
-                    dataContainer="projectsDc">
+                    dataContainer="employeesDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
@@ -47,17 +47,17 @@
             </actions>
             <columns>
                 <column id="name"/>
-                <column id="startDate"/>
-                <column id="endDate"/>
-                <column id="manager"/>
-                <column id="status"/>
+                <column id="phone"/>
+                <column id="salary"/>
+                <column id="employeeDetails.passportNumber"/>
+                <column id="employeeDetails.expiryDate"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="projectsTable.create"/>
-                <button id="editBtn" action="projectsTable.edit"/>
-                <button id="removeBtn" action="projectsTable.remove"/>
+                <button id="createBtn" action="employeesTable.create"/>
+                <button id="editBtn" action="employeesTable.edit"/>
+                <button id="removeBtn" action="employeesTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

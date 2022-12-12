@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
-        caption="msg://projectBrowse.caption"
-        focusComponent="projectsTable">
+        caption="msg://timeEntryBrowse.caption"
+        focusComponent="timeEntriesTable">
     <data readOnly="true">
-        <collection id="projectsDc"
-                    class="com.company.jmixpm.entity.Project">
+        <collection id="timeEntriesDc"
+                    class="com.company.jmixpm.entity.TimeEntry">
             <fetchPlan extends="_base">
-                <property name="manager" fetchPlan="_base"/>
+                <property name="task" fetchPlan="_base"/>
+                <property name="user" fetchPlan="_base"/>
             </fetchPlan>
-            <loader id="projectsDl">
+            <loader id="timeEntriesDl">
                 <query>
-                    <![CDATA[select e from Project e]]>
+                    <![CDATA[select e from TimeEntry e]]>
                 </query>
             </loader>
         </collection>
@@ -32,32 +33,32 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="projectsTable" spacing="true">
+    <layout expand="timeEntriesTable" spacing="true">
         <filter id="filter"
-                dataLoader="projectsDl">
+                dataLoader="timeEntriesDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="projectsTable"
+        <groupTable id="timeEntriesTable"
                     width="100%"
-                    dataContainer="projectsDc">
+                    dataContainer="timeEntriesDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="name"/>
-                <column id="startDate"/>
-                <column id="endDate"/>
-                <column id="manager"/>
-                <column id="status"/>
+                <column id="task"/>
+                <column id="timeSpent"/>
+                <column id="entryDate"/>
+                <column id="user"/>
+                <column id="description"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="projectsTable.create"/>
-                <button id="editBtn" action="projectsTable.edit"/>
-                <button id="removeBtn" action="projectsTable.remove"/>
+                <button id="createBtn" action="timeEntriesTable.create"/>
+                <button id="editBtn" action="timeEntriesTable.edit"/>
+                <button id="removeBtn" action="timeEntriesTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
