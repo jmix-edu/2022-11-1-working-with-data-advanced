@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://projectStatsBrowse.caption"
+        focusComponent="projectStatsTable">
+    <data readOnly="true">
+        <collection id="projectStatsDc"
+                    class="com.company.jmixpm.entity.ProjectStats">
+            <loader id="projectStatsDl"/>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <layout expand="projectStatsTable" spacing="true">
+        <table id="projectStatsTable"
+               width="100%"
+               dataContainer="projectStatsDc">
+            <columns>
+                <column id="projectName"/>
+                <column id="tasksCount"/>
+                <column id="plannedEfforts"/>
+                <column id="actualEfforts"/>
+            </columns>
+        </table>
+    </layout>
+</window>
