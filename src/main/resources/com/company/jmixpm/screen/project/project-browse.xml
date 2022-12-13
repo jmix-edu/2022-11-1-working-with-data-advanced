@@ -51,6 +51,7 @@
                 <column id="endDate"/>
                 <column id="manager"/>
                 <column id="status"/>
+                <column id="projectLabels"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

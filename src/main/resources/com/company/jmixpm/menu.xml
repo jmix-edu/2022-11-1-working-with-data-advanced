@@ -13,6 +13,7 @@
         <item screen="Roadmap.browse" caption="msg://com.company.jmixpm.screen.roadmap/roadmapBrowse.menu"/>
         <item screen="ProjectStats.browse"
               caption="msg://com.company.jmixpm.screen.projectstats/projectStatsBrowse.menu"/>
+        <item screen="WorkloadScreen" caption="msg://com.company.jmixpm.screen.workload/workloadScreen.caption"/>
     </menu>
 
 </menu-config>
