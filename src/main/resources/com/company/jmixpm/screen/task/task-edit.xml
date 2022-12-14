@@ -39,6 +39,8 @@
                 <dateField id="startDateField" property="startDate"/>
                 <textField id="estimatedEffortsField" property="estimatedEfforts"/>
                 <comboBox id="labelField" property="label"/>
+
+                <field id="projectLabelsField" property="project.projectLabels"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

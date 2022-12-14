@@ -41,7 +41,10 @@
                     </actions>
                 </entityPicker>
                 <comboBox id="statusField" property="status"/>
-                <textArea id="projectLabelsField" property="projectLabels" editable="false"/>
+
+<!--                <textArea id="projectLabelsField" property="projectLabels" editable="false"/>-->
+                <field id="projectLabelsField" property="projectLabels" editable="false"/>
+
             </column>
         </form>
         <tabSheet id="tabSheet" width="100%">
@@ -99,6 +102,10 @@
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
+            <button id="commitWithBeanValidation"
+                    caption="Commit With Bean Validation"/>
+            <button id="performBeanValidationBtn"
+                    caption="Perform Bean Validation"/>
         </hbox>
     </layout>
 </window>
