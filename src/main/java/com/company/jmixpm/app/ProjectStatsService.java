@@ -2,7 +2,6 @@ package com.company.jmixpm.app;
 
 import com.company.jmixpm.entity.Project;
 import com.company.jmixpm.entity.ProjectStats;
-import com.company.jmixpm.entity.Task;
 import io.jmix.core.DataManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,10 +27,8 @@ public class ProjectStatsService {
             stats.setProjectName(project.getName());
             stats.setTasksCount(project.getTasks().size());
 
-            Integer estimatedEfforts = project.getTasks().stream()
-                    .map(Task::getEstimatedEfforts)
-                    .reduce(0, Integer::sum);
-            stats.setPlannedEfforts(estimatedEfforts);
+            stats.setPlannedEfforts(project.getTotalEstimatedEfforts() == null
+                    ? 0 : project.getTotalEstimatedEfforts());
 
             stats.setActualEfforts(getActualEfforts(project.getId()));
 

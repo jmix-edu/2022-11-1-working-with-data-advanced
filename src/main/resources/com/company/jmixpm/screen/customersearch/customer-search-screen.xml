@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://customerSearchScreen.caption">
+    <data>
+        <collection id="customersDc" class="com.company.jmixpm.entity.Customer">
+            <fetchPlan extends="_base"/>
+            <loader id="customersDl">
+                <query>
+                    <![CDATA[select e from Customer e]]>
+                    <condition>
+                        <and>
+                            <c:jpql>
+                                <c:where>e.firstName like :firstName</c:where>
+                            </c:jpql>
+                            <c:jpql>
+                                <c:where>e.lastName like :lastName</c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
+                </query>
+            </loader>
+        </collection>
+        <collection id="ordersDc" class="com.company.jmixpm.entity.Order">
+            <fetchPlan extends="_base">
+                <property name="customer" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="ordersDl">
+                <query>
+                    <![CDATA[select e from Order_ e where e.customer = :customer]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+
+    <facets>
+        <dataLoadCoordinator>
+            <refresh loader="customersDl">
+                <onScreenEvent type="BeforeShow"/>
+                <onComponentValueChanged component="firstNameField" param="firstName" likeClause="CASE_SENSITIVE"/>
+                <onComponentValueChanged component="lastNameField" param="lastName" likeClause="CASE_SENSITIVE"/>
+            </refresh>
+            <refresh loader="ordersDl">
+                <onContainerItemChanged container="customersDc" param="customer"/>
+            </refresh>
+        </dataLoadCoordinator>
+    </facets>
+
+    <layout expand="tablesBox" spacing="true">
+        <hbox spacing="true">
+            <textField id="firstNameField"/>
+            <textField id="lastNameField"/>
+        </hbox>
+
+        <hbox id="tablesBox" spacing="true" width="100%">
+            <table id="customersTable"
+                   height="100%" width="100%"
+                   dataContainer="customersDc">
+                <columns>
+                    <column id="firstName"/>
+                    <column id="lastName"/>
+                    <column id="email"/>
+                </columns>
+            </table>
+
+            <table id="ordersTable"
+                   height="100%" width="100%"
+                   dataContainer="ordersDc">
+                <columns>
+                    <column id="orderNumber"/>
+                    <column id="date"/>
+                    <column id="customer"/>
+                </columns>
+            </table>
+        </hbox>
+    </layout>
+</window>

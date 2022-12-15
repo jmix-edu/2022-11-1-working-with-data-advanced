@@ -7,6 +7,7 @@
                   class="com.company.jmixpm.entity.Project">
             <fetchPlan extends="_base">
                 <property name="manager" fetchPlan="_base"/>
+                <property name="owner" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
             <collection id="participantsDc" property="participants"/>
@@ -41,10 +42,9 @@
                     </actions>
                 </entityPicker>
                 <comboBox id="statusField" property="status"/>
-
-<!--                <textArea id="projectLabelsField" property="projectLabels" editable="false"/>-->
+                <!--                <textArea id="projectLabelsField" property="projectLabels" editable="false"/>-->
                 <field id="projectLabelsField" property="projectLabels" editable="false"/>
-
+                <entityPicker id="ownerField" property="owner"/>
             </column>
         </form>
         <tabSheet id="tabSheet" width="100%">
