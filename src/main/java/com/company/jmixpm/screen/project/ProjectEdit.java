@@ -2,6 +2,7 @@ package com.company.jmixpm.screen.project;
 
 import com.company.jmixpm.app.ProjectService;
 import com.company.jmixpm.datatype.ProjectLabels;
+import com.company.jmixpm.screen.user.UserBrowse;
 import io.jmix.core.validation.group.UiComponentChecks;
 import io.jmix.core.validation.group.UiCrossFieldChecks;
 import io.jmix.ui.Notifications;
@@ -84,5 +85,10 @@ public class ProjectEdit extends StandardEditor<Project> {
         notifications.create(Notifications.NotificationType.TRAY)
                 .withCaption(sb.toString())
                 .show();
+    }
+
+    @Install(to = "usersTable.add", subject = "screenConfigurer")
+    private void usersTableAddScreenConfigurer(Screen screen) {
+        ((UserBrowse) screen).setFilterProject(getEditedEntity());
     }
 }

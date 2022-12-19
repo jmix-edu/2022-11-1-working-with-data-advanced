@@ -47,6 +47,10 @@
                 <action id="changePassword" type="changePassword"/>
                 <action id="resetPassword" type="resetPassword"/>
                 <action id="resetRememberMeToken" type="resetRememberMeToken"/>
+                <action id="showUserProjects"
+                        caption="msg://showUserProjects.caption"
+                        type="itemTracking"
+                        icon="LIST"/>
             </actions>
             <columns>
                 <column id="username"/>
@@ -71,6 +75,7 @@
                         <action id="usersTable.showUserSubstitutions"/>
                     </actions>
                 </popupButton>
+                <button action="usersTable.showUserProjects"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

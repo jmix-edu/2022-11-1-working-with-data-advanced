@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://customerSearchScreen2.caption">
+    <data>
+        <collection id="customersDc" class="com.company.jmixpm.entity.Customer">
+            <fetchPlan extends="_base"/>
+            <loader id="customersDl">
+                <query>
+                    <![CDATA[select e from Customer e]]>
+                    <condition>
+                        <and>
+                            <c:jpql>
+                                <c:where>e.firstName like :name</c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <layout expand="customersTable" spacing="true">
+        <textField id="nameField"/>
+
+        <table id="customersTable"
+               dataContainer="customersDc"
+               width="100%">
+            <columns>
+                <column id="firstName"/>
+                <column id="lastName"/>
+                <column id="email"/>
+            </columns>
+        </table>
+    </layout>
+</window>

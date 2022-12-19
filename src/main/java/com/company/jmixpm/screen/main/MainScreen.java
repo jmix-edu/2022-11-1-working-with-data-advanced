@@ -1,5 +1,9 @@
 package com.company.jmixpm.screen.main;
 
+import com.company.jmixpm.entity.Project;
+import com.company.jmixpm.entity.Task;
+import com.company.jmixpm.entity.User;
+import io.jmix.core.DataManager;
 import io.jmix.ui.ScreenTools;
 import io.jmix.ui.component.AppWorkArea;
 import io.jmix.ui.component.Button;
@@ -28,6 +32,20 @@ public class MainScreen extends Screen implements Window.HasWorkArea {
     private Drawer drawer;
     @Autowired
     private Button collapseDrawerButton;
+
+    @Autowired
+    private DataManager dataManager;
+
+    @Subscribe
+    public void onInit(InitEvent event) {
+        Task task = dataManager.load(Task.class)
+                .all()
+                .one();
+
+        Project project = task.getProject();
+        String name = project.getName();
+        User assignee = task.getAssignee();
+    }
 
 
     @Override
