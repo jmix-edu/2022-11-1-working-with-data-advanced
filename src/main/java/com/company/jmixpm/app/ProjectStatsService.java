@@ -17,8 +17,8 @@ public class ProjectStatsService {
     private DataManager dataManager;
 
     public List<ProjectStats> fetchProjectStatistics() {
-        List<Project> projects = dataManager.load(Project.class).all()
-                .fetchPlan("project-with-tasks")
+        List<Project> projects = dataManager.load(Project.class)
+                .all()
                 .list();
 
         return projects.stream().map(project -> {
