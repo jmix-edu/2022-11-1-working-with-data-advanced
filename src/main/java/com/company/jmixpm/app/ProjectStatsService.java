@@ -13,8 +13,11 @@ import java.util.stream.Collectors;
 @Component
 public class ProjectStatsService {
 
-    @Autowired
-    private DataManager dataManager;
+    private final DataManager dataManager;
+
+    public ProjectStatsService(DataManager dataManager) {
+        this.dataManager = dataManager;
+    }
 
     public List<ProjectStats> fetchProjectStatistics() {
         List<Project> projects = dataManager.load(Project.class)
