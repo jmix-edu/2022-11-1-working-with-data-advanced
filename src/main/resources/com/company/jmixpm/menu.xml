@@ -14,6 +14,10 @@
         <item screen="ProjectStats.browse"
               caption="msg://com.company.jmixpm.screen.projectstats/projectStatsBrowse.menu"/>
         <item screen="WorkloadScreen" caption="msg://com.company.jmixpm.screen.workload/workloadScreen.caption"/>
+        <item screen="ProjectTaskEntityLogBrowse"
+              caption="msg://com.company.jmixpm.screen.entitylog/projectTaskEntityLogBrowse.caption"/>
+        <item screen="ProjectSnapshotBrowse"
+              caption="msg://com.company.jmixpm.screen.projectsnapshotbrowse/projectSnapshotBrowse.caption"/>
     </menu>
     <menu id="customers" caption="msg://com.company.jmixpm/menu_config.customers" insertBefore="administration">
         <item screen="Customer.browse" caption="msg://com.company.jmixpm.screen.customer/customerBrowse.menu"/>

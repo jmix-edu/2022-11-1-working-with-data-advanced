@@ -13,7 +13,8 @@
             <loader id="projectsDl">
                 <query>
                     <![CDATA[select e from Project e
-                            where function('actual_efforts', e.id) > e.totalEstimatedEfforts]]>
+                            where (function('actual_efforts', e.id) > 0 and e.totalEstimatedEfforts is null)
+                            or function('actual_efforts', e.id) > e.totalEstimatedEfforts]]>
                 </query>
             </loader>
         </collection>
@@ -41,6 +42,7 @@
         </filter>
         <groupTable id="projectsTable"
                     width="100%"
+                    multiselect="true"
                     dataContainer="projectsDc">
             <actions>
                 <action id="create" type="create"/>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://projectSnapshotBrowse.caption">
+    <data>
+        <collection id="projectsDc"
+                    class="com.company.jmixpm.entity.Project">
+            <fetchPlan extends="_base">
+                <property name="manager" fetchPlan="_base"/>
+                <property name="owner" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="projectsDl">
+                <query><![CDATA[select e from Project e]]></query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <layout expand="splitter">
+        <split id="splitter" width="100%" orientation="vertical">
+            <table id="projectsTable"
+                   dataContainer="projectsDc"
+                   height="100%"
+                   width="100%">
+                <columns>
+                    <column id="name"/>
+                    <column id="startDate"/>
+                    <column id="endDate"/>
+                    <column id="manager"/>
+                    <column id="status"/>
+                    <column id="projectLabels"/>
+                    <column id="totalEstimatedEfforts"/>
+                </columns>
+            </table>
+            <fragment id="snapshotDiff"
+                      screen="snapshotDiff"
+                      width="100%"
+                      height="100%"/>
+        </split>
+    </layout>
+</window>

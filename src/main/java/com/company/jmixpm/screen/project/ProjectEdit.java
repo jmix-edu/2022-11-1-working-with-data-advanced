@@ -3,6 +3,7 @@ package com.company.jmixpm.screen.project;
 import com.company.jmixpm.app.ProjectService;
 import com.company.jmixpm.datatype.ProjectLabels;
 import com.company.jmixpm.screen.user.UserBrowse;
+import io.jmix.audit.snapshot.EntitySnapshotManager;
 import io.jmix.core.validation.group.UiComponentChecks;
 import io.jmix.core.validation.group.UiCrossFieldChecks;
 import io.jmix.ui.Notifications;
@@ -28,6 +29,10 @@ public class ProjectEdit extends StandardEditor<Project> {
 
     @Autowired
     private Field<ProjectLabels> projectLabelsField;
+    @Autowired
+    private Button performBeanValidationBtn;
+    @Autowired
+    private Button commitWithBeanValidation;
 
     @Autowired
     private ProjectService projectService;
@@ -90,5 +95,21 @@ public class ProjectEdit extends StandardEditor<Project> {
     @Install(to = "usersTable.add", subject = "screenConfigurer")
     private void usersTableAddScreenConfigurer(Screen screen) {
         ((UserBrowse) screen).setFilterProject(getEditedEntity());
+    }
+
+    @Override
+    public void setReadOnly(boolean readOnly) {
+        super.setReadOnly(readOnly);
+        commitWithBeanValidation.setEnabled(!readOnly);
+        performBeanValidationBtn.setEnabled(!readOnly);
+    }
+
+    @Autowired
+    private EntitySnapshotManager entitySnapshotManager;
+
+    @Subscribe
+    public void onAfterCommitChanges(AfterCommitChangesEvent event) {
+        entitySnapshotManager
+                .createSnapshot(getEditedEntity(), getEditedEntityContainer().getFetchPlan());
     }
 }

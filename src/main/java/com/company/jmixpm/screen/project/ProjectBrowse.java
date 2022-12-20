@@ -28,7 +28,8 @@ public class ProjectBrowse extends StandardLookup<Project> {
     @Subscribe
     public void onBeforeShow(BeforeShowEvent event) {
         Integer newProjectCount = dataManager.loadValue("select count(e) from Project e " +
-                        "where :session_isManager = TRUE and e.status = 10 " +
+                        "where :session_isManager = TRUE " +
+                        "and e.status = @enum(com.company.jmixpm.entity.ProjectStatus.NEW) " +
                         "and e.manager.id = :current_user_id", Integer.class)
                 .one();
 

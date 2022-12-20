@@ -41,6 +41,9 @@ dependencies {
     }
     implementation 'org.postgresql:postgresql'
     implementation 'org.hsqldb:hsqldb'
+    implementation 'io.jmix.quartz:jmix-quartz-starter'
+    implementation 'io.jmix.audit:jmix-audit-starter'
+    implementation 'io.jmix.audit:jmix-audit-ui-starter'
 }
 
 test {
